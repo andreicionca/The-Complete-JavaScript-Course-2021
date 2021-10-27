@@ -4,12 +4,10 @@ JavaScript Fundamentals Part 1
 
 */
 
-// - Variabila LET - //
-//Let = block scope;
+// - Variabila CONST - //
+//Cea mai buna practica e sa declaram variabile folosind const;
+//Variabilele const nu-si mai pot schimba valoarea;
+//Cand declaram o variabila const ea trebuie neaparat sa aiba o valoare;
 
-let js = "amazing";
-console.log(js);
-let age = 30;
-console.log(age);
-age = 31;
-console.log(age);
+const birthYear = 1991;
+console.log(birthYear);
