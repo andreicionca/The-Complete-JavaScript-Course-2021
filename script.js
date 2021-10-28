@@ -5,24 +5,44 @@ JavaScript Fundamentals Part 2
 
 */
 
-// - Array Introducere - //
+// - Array Operations (Methods) - //
+
+// Push
+//adauga un element la sfarsitul sirului
 
 const friends = [`Daniel`, `Matei`, `Alex`];
-console.log(friends[0]);
-console.log(friends.length);
-friends[2] = `Luca`;
+const newLenght = friends.push(`Mihai`);
+console.log(newLenght);
 console.log(friends[friends.length - 1]);
 
-const years = new Array(1991, 1984, 2008, 2020);
-console.log(years[2]);
-console.log(years[years.length - 1]);
+// Unshift
+//adauga un element la inceputul sirului
 
-const secondName = `Cionca`;
-const andrei = [`Andrei`, secondName, 2037 - 2021, `teacher`, friends];
-console.log(andrei);
+friends.unshift("David");
+console.log(friends);
 
-const age = function (birthYear) {
-  return 2021 - birthYear;
-};
-const kids = [age(1991), age(2000), age(2016)];
-console.log(kids[kids.length - 1]);
+//Pop
+//elimina ultimul element din sir
+
+friends.pop();
+const popped = friends.pop();
+console.log(popped);
+console.log(friends);
+
+//Shift
+//elimina primul element dintr-un sir
+
+friends.shift();
+console.log(friends);
+
+//IndexOf
+//indica pozitia unui element intr-un sir
+console.log(friends.indexOf(`Daniel`));
+
+//Includes
+//returneaza True sau False daca cautam un element din sir;
+
+console.log(friends.includes(`Matei`));
+if (friends.includes(`Matei`)) {
+  console.log(`You have a friend called Matei`);
+}
