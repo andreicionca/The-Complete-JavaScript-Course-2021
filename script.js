@@ -5,41 +5,24 @@ JavaScript Fundamentals Part 2
 
 */
 
-// - Coding Challenge #1 -//
+// - Array Introducere - //
 
-/*
-Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new gymnastics discipline, which works differently.
-Each team competes 3 times, and then the average of the 3 scores is calculated (so one average score per team).
-A team ONLY wins if it has at least DOUBLE the average score of the other team. Otherwise, no team wins!
+const friends = [`Daniel`, `Matei`, `Alex`];
+console.log(friends[0]);
+console.log(friends.length);
+friends[2] = `Luca`;
+console.log(friends[friends.length - 1]);
 
-1. Create an arrow function 'calcAverage' to calculate the average of 3 scores
-2. Use the function to calculate the average for both teams
-3. Create a function 'checkWinner' that takes the average score of each team as parameters ('avgDolhins' and 'avgKoalas'), and then logs the winner to the console, together with the victory points, according to the rule above. Example: "Koalas win (30 vs. 13)".
-4. Use the 'checkWinner' function to determine the winner for both DATA 1 and DATA 2.
-5. Ignore draws this time.
+const years = new Array(1991, 1984, 2008, 2020);
+console.log(years[2]);
+console.log(years[years.length - 1]);
 
-TEST DATA 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
-TEST DATA 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
+const secondName = `Cionca`;
+const andrei = [`Andrei`, secondName, 2037 - 2021, `teacher`, friends];
+console.log(andrei);
 
-HINT: To calculate average of 3 values, add them all together and divide by 3
-HINT: To check if number A is at least double number B, check for A >= 2 * B. Apply this to the team's average scores 😉
-
-GOOD LUCK 😀
-*/
-
-const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
-
-const avgDolhins = calcAverage(85, 54, 41);
-const avgKoalas = calcAverage(23, 34, 27);
-
-function checkWinner(avgDolhins, avgKoalas) {
-  if (avgDolhins >= 2 * avgKoalas || avgKoalas >= 2 * avgDolhins) {
-    if (avgDolhins > avgKoalas) {
-      return console.log(`Dolphins win (${avgDolhins} vs ${avgKoalas})`);
-    } else {
-      return console.log(`Koalas win (${avgKoalas} vs ${avgDolhins})`);
-    }
-  } else return console.log(`No team wins`);
-}
-
-checkWinner(avgDolhins, avgKoalas);
+const age = function (birthYear) {
+  return 2021 - birthYear;
+};
+const kids = [age(1991), age(2000), age(2016)];
+console.log(kids[kids.length - 1]);
