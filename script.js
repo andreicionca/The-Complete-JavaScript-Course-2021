@@ -4,35 +4,25 @@ JavaScript Fundamentals Part 1
 
 */
 
-// - Coding Challenge #2 - //
+// - Type Conversion and Coercion - //
 
-/*
-Use the BMI example from Challenge #1, and the code you already wrote, and improve it:
+// type conversion
+// Number(); - Aceasta este o functie care converteste un string (`5`) in numar (5);
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
 
-1. Print a nice output to the console, saying who has the higher BMI. The message can be either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!"
-2. Use a template literal to include the BMI values in the outputs. Example: "Mark's BMI (28.3) is higher than John's (23.9)!"
+console.log(Number("Jonas"));
+console.log(typeof NaN);
 
-HINT: Use an if/else statement 😉
+console.log(String(23), 23);
 
-GOOD LUCK 😀
-*/
+// type coercion
+console.log("I am " + 23 + " years old");
+console.log("23" - "10" - 3);
+console.log("23" / "2");
+console.log("23" > "18");
 
-const massMark = 78;
-const heightMark = 1.69;
-const massJohn = 92;
-const heightJohn = 1.95;
-
-// const massMark = 95;
-// const heightMark = 1.88;
-// const massJohn = 85;
-// const heightJohn = 1.76;
-
-const BMIMark = massMark / heightMark ** 2;
-const BMIJohn = massJohn / (heightJohn * heightJohn);
-console.log(BMIMark, BMIJohn);
-
-if (BMIMark > BMIJohn) {
-  console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!`);
-} else {
-  console.log(`John's BMI (${BMIJohn}) is higher than Marks's (${BMIMark})!`);
-}
+let n = "1" + 1; // '11'
+n = n - 1;
+console.log(n);
