@@ -5,50 +5,41 @@ JavaScript Fundamentals Part 2
 
 */
 
-// - Function declaration, Function expression, Arrow Function - //
+// - Coding Challenge #1 -//
 
-// -Function declaration
-//!Poate fi apelata si inainte de initializare;
+/*
+Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new gymnastics discipline, which works differently.
+Each team competes 3 times, and then the average of the 3 scores is calculated (so one average score per team).
+A team ONLY wins if it has at least DOUBLE the average score of the other team. Otherwise, no team wins!
 
-function calcAge1(birthyear) {
-  return 2037 - birthyear;
+1. Create an arrow function 'calcAverage' to calculate the average of 3 scores
+2. Use the function to calculate the average for both teams
+3. Create a function 'checkWinner' that takes the average score of each team as parameters ('avgDolhins' and 'avgKoalas'), and then logs the winner to the console, together with the victory points, according to the rule above. Example: "Koalas win (30 vs. 13)".
+4. Use the 'checkWinner' function to determine the winner for both DATA 1 and DATA 2.
+5. Ignore draws this time.
+
+TEST DATA 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
+TEST DATA 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
+
+HINT: To calculate average of 3 values, add them all together and divide by 3
+HINT: To check if number A is at least double number B, check for A >= 2 * B. Apply this to the team's average scores 😉
+
+GOOD LUCK 😀
+*/
+
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+
+const avgDolhins = calcAverage(85, 54, 41);
+const avgKoalas = calcAverage(23, 34, 27);
+
+function checkWinner(avgDolhins, avgKoalas) {
+  if (avgDolhins >= 2 * avgKoalas || avgKoalas >= 2 * avgDolhins) {
+    if (avgDolhins > avgKoalas) {
+      return console.log(`Dolphins win (${avgDolhins} vs ${avgKoalas})`);
+    } else {
+      return console.log(`Koalas win (${avgKoalas} vs ${avgDolhins})`);
+    }
+  } else return console.log(`No team wins`);
 }
-const age1 = calcAge1(1991);
-console.log(age1);
 
-// Function expression
-//!Nu poate fi apelata inainte de initializare;
-
-const calcAge2 = function (birthyear) {
-  return 2037 - birthyear;
-};
-const age2 = calcAge2(1991);
-console.log(age2);
-
-// Arrow functions
-// Este o forma mai scurta a Function expresion;
-//Se scrie mai intai variabila apoi semnul egal = urmat de parametru si apoi return => operatia dorita;
-
-//Exemplu 1 ↓
-
-const calcAge3 = (birthyear) => 2037 - birthyear;
-const age3 = calcAge3(1991);
-console.log(age3);
-
-//Exemplu 2 ↓
-
-const yearUntilRetirement = (birthyear) => {
-  const age = 2037 - birthyear;
-  const retirement = 65 - age;
-  return retirement;
-};
-console.log(yearUntilRetirement(1991));
-
-//Exemplu 3 ↓
-
-const yearUntilRetirement2 = (birthYear, name) => {
-  const age = 2039 - birthYear;
-  const retirement = 65 - age;
-  return `${name} retires in ${retirement} ages.`;
-};
-console.log(yearUntilRetirement2(1991, `Andrei`));
+checkWinner(avgDolhins, avgKoalas);
