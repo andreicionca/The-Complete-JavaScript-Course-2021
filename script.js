@@ -4,20 +4,27 @@ JavaScript Fundamentals Part 1
 
 */
 
-// - Template Literals - //
-// Regula de formare pentru Temp.literal este urmatoarea → Folosim caracterul ` (backticks) urmat de textul dorit. Pentru variabila din text folosim caracterul dolar $ apoi in acolada {} numele variabilei. La sfarsit punem din nou caracterul ` Vezi exemplul de mai jos ↓
+// - Taking Decisions: if / else Statements - //
+// If Statements
 
-const firstName = "Andrei";
-const lastName = "Cionca";
-const myAge = 29;
-const stRing = `I'm ${firstName} and I have ${myAge} years!`;
-console.log(stRing);
+// if(true) → {........}
 
-//Putem folosi caracterul backticks `` pentru toate textele;
+const age = 19;
+const isOldEnough = age >= 18;
+if (isOldEnough) {
+  console.log(`Sara poate conduce masina`);
+}
 
-// Multiline string
-// E foarte util caracterul backticks `` si cand vrem sa inseram textul pe randul urmator ↓
+// If si Else Statements
+// if(true) → {........} else → {........}
 
-console.log(`String
-multiple
-line`);
+const ageNew = 13;
+const isOldEnoughNew = ageNew >= 18;
+const yearLeft = 18 - ageNew;
+if (isOldEnoughNew) {
+  console.log(`Sara poate conduce masina`);
+} else {
+  console.log(
+    `Sara nu poate conduce masina. Mai are de asteptat inca ${yearLeft} ani.`
+  );
+}
