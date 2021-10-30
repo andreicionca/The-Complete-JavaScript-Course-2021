@@ -5,60 +5,51 @@ JavaScript Fundamentals Part 2
 
 */
 
-// - Objects introduction- //
-
-//Array
-
-const andreiArray = [
-  `Andrei`,
-  `Cionca`,
-  2021 - 1991,
-  `teacher`,
-  [`Marian`, `Simion`, `Iulian`],
-];
-
-//Object
+// - Objects Methods- //
 
 const andrei = {
   firstName: `Andrei`,
   lastName: `Cionca`,
-  age: 2021 - 1991,
-  job: `teacher`,
+  birthYear: 1991,
+  job: `profesor`,
   friends: [`Marian`, `Iuga`, `Iulian`],
+  hasDriverLicense: true,
+  //This is called a method ↓
+  // calcAge: function (birthYear) {
+  //   return 2021-birthYear;
+
+  // this keyword ↓
+  // calcAge: function () {
+  //   return 2021-this.birthYear;
+  // }
+
+  //Crearea unei proprietati a obiectului intr-o functie >>> andrei.age este proprietatea
+
+  calcAge: function () {
+    this.age = 2021 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} este un ${
+      this.job
+    } in varsta de ${this.calcAge()} de ani si ${
+      this.hasDriverLicense ? `are` : `nu are`
+    } permis auto.`;
+  },
 };
+console.log(andrei.calcAge());
+console.log(andrei.age);
+console.log(andrei.age);
+console.log(andrei.age);
 
-// Dot and Bracket notation
-
-console.log(andrei.firstName);
-
-console.log(andrei[`lastName`]);
-
-const nameKey = `Name`;
-console.log(andrei[`first${nameKey}`]);
-console.log(andrei[`last` + nameKey]);
-
-const interstedIn = prompt(
-  `What do you want to know about Andrei? Choose between firstName, lastName, age, job, and friends`
-);
-
-//Add new proprietes to object
-
-andrei.location = `Romania`;
-andrei[`twitter`] = `andreicionca1`;
-
-if (andrei[interstedIn]) {
-  console.log(andrei[interstedIn]);
-} else {
-  console.log(`Wrong choice`);
-}
-
-//Challenge
+//Chalenge
+//''Andrei este un profesor in varsta de 30 de ani si are permisul auto''
 
 console.log(
-  `${andrei.firstName} are ${andrei.friends.length} prieteni iar cel mai bun prieten al lui este ${andrei.friends[0]}`
+  `${andrei.firstName} este un ${andrei[`job`]} in varsta de ${
+    andrei.age
+  } de ani si ${andrei.hasDriverLicense ? `are` : `nu are`} permisul auto.`
 );
-console.log(
-  `${andrei.firstName} are ${
-    andrei.friends.length
-  } prieteni iar cel mai bun prieten al lui este ${andrei[`friends`][0]}`
-);
+
+console.log(andrei.getSummary());
