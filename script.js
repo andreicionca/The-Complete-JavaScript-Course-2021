@@ -5,49 +5,52 @@ JavaScript Fundamentals Part 2
 
 */
 
-// Coding Challenge #3
+// - For Loop- //
 
-/*
-Let's go back to Mark and John comparing their BMIs! This time, let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
+for (let i = 1; i <= 30; i++) {
+  console.log(`Lifting weights repetition ${i}`);
+}
 
-1. For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith)
-2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also return it from the method.
-3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
+const andreiArray = [
+  `Andrei`,
+  `Cionca`,
+  2021 - 1991,
+  `teacher`,
+  [`Marian`, `Simion`, `Iulian`],
+  true,
+];
 
-TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
+const types = [];
+for (let i = 0; i < andreiArray.length; i++) {
+  console.log(andreiArray[i], typeof andreiArray[i]);
 
-GOOD LUCK 😀
-*/
+  // Filling types array
+  //types[i] = typeof andreiArray[i]
+  types.push(typeof andreiArray[i]);
+}
+console.log(types);
 
-const mark = {
-  fullName: `Mark Miller`,
-  mass: 78,
-  heigh: 1.69,
-  calcBmi: function () {
-    this.bmi = this.mass / this.heigh ** 2;
-    return this.bmi;
-  },
-};
+const years = [1991, 2000, 2009, 1937];
 
-const john = {
-  fullName: `John Smith`,
-  mass: 92,
-  heigh: 1.95,
-  calcBmi: function () {
-    this.bmi = this.mass / this.heigh ** 2;
-    return this.bmi;
-  },
-};
+const ages = [];
 
-//"John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
-//mark.calcBmi() > john.calcBmi() ? console.log(`${mark.fullName}'s BMi (${mark.bmi}) is higer that ${john.fullName}'s (${john.bmi})`) : console.log(`${john.fullName}'s BMi (${john.bmi}) is higer that ${mark.fullName}'s (${mark.bmi})`)
+for (let i = 0; i < years.length; i++) {
+  ages.push(2021 - years[i]);
+  console.log(ages[i]);
+}
 
-if (mark.calcBmi() > john.calcBmi()) {
-  console.log(
-    `${mark.fullName}'s BMi (${mark.bmi}) is higer that ${john.fullName}'s (${john.bmi})`
-  );
-} else {
-  console.log(
-    `${john.fullName}'s BMi (${john.bmi}) is higer that ${mark.fullName}'s (${mark.bmi})`
-  );
+// continue and break
+
+for (let i = 0; i < andreiArray.length; i++) {
+  //continue is to exit the current iteration of the loop and continue to the next one
+  if (typeof andreiArray[i] !== `string`) continue;
+
+  console.log(andreiArray[i], typeof andreiArray[i]);
+}
+
+for (let i = 0; i < andreiArray.length; i++) {
+  //break is used to completely terminate the whole loop.
+  if (typeof andreiArray[i] === `number`) break;
+
+  console.log(andreiArray[i], typeof andreiArray[i]);
 }
