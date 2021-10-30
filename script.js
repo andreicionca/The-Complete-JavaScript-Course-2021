@@ -5,51 +5,49 @@ JavaScript Fundamentals Part 2
 
 */
 
-// - Objects Methods- //
+// Coding Challenge #3
 
-const andrei = {
-  firstName: `Andrei`,
-  lastName: `Cionca`,
-  birthYear: 1991,
-  job: `profesor`,
-  friends: [`Marian`, `Iuga`, `Iulian`],
-  hasDriverLicense: true,
-  //This is called a method ↓
-  // calcAge: function (birthYear) {
-  //   return 2021-birthYear;
+/*
+Let's go back to Mark and John comparing their BMIs! This time, let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
 
-  // this keyword ↓
-  // calcAge: function () {
-  //   return 2021-this.birthYear;
-  // }
+1. For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith)
+2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also return it from the method.
+3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
 
-  //Crearea unei proprietati a obiectului intr-o functie >>> andrei.age este proprietatea
+TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
 
-  calcAge: function () {
-    this.age = 2021 - this.birthYear;
-    return this.age;
-  },
+GOOD LUCK 😀
+*/
 
-  getSummary: function () {
-    return `${this.firstName} este un ${
-      this.job
-    } in varsta de ${this.calcAge()} de ani si ${
-      this.hasDriverLicense ? `are` : `nu are`
-    } permis auto.`;
+const mark = {
+  fullName: `Mark Miller`,
+  mass: 78,
+  heigh: 1.69,
+  calcBmi: function () {
+    this.bmi = this.mass / this.heigh ** 2;
+    return this.bmi;
   },
 };
-console.log(andrei.calcAge());
-console.log(andrei.age);
-console.log(andrei.age);
-console.log(andrei.age);
 
-//Chalenge
-//''Andrei este un profesor in varsta de 30 de ani si are permisul auto''
+const john = {
+  fullName: `John Smith`,
+  mass: 92,
+  heigh: 1.95,
+  calcBmi: function () {
+    this.bmi = this.mass / this.heigh ** 2;
+    return this.bmi;
+  },
+};
 
-console.log(
-  `${andrei.firstName} este un ${andrei[`job`]} in varsta de ${
-    andrei.age
-  } de ani si ${andrei.hasDriverLicense ? `are` : `nu are`} permisul auto.`
-);
+//"John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
+//mark.calcBmi() > john.calcBmi() ? console.log(`${mark.fullName}'s BMi (${mark.bmi}) is higer that ${john.fullName}'s (${john.bmi})`) : console.log(`${john.fullName}'s BMi (${john.bmi}) is higer that ${mark.fullName}'s (${mark.bmi})`)
 
-console.log(andrei.getSummary());
+if (mark.calcBmi() > john.calcBmi()) {
+  console.log(
+    `${mark.fullName}'s BMi (${mark.bmi}) is higer that ${john.fullName}'s (${john.bmi})`
+  );
+} else {
+  console.log(
+    `${john.fullName}'s BMi (${john.bmi}) is higer that ${mark.fullName}'s (${mark.bmi})`
+  );
+}
