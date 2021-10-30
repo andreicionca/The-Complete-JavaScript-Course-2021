@@ -5,25 +5,19 @@ JavaScript Fundamentals Part 2
 
 */
 
-// - Loop Backwards and Loops in Loops- //
+// - While Loop- //
 
-const andreiArray = [
-  `Andrei`,
-  `Cionca`,
-  2021 - 1991,
-  `teacher`,
-  [`Marian`, `Simion`, `Iulian`],
-  true,
-];
-
-for (let i = andreiArray.length - 1; i >= 0; i--) {
-  console.log(andreiArray[i]);
+let rep = 1;
+while (rep <= 10) {
+  console.log(`Lifting weight repetition ${rep}`);
+  rep++;
 }
 
-for (let exercise = 1; exercise < 4; exercise++) {
-  console.log(`------------Starting exercises ${exercise}`);
+let dice = Math.trunc(Math.random() * 6) + 1;
 
-  for (let rep = 1; rep < 6; rep++) {
-    console.log(`Lifting weight repetition ${rep}`);
-  }
+while (dice !== 6) {
+  console.log(`Your rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log(`Loop is about to end...`);
 }
+//whenever you do need a loop without a counter, you can reach for the while loop.
