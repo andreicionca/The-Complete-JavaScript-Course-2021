@@ -4,57 +4,88 @@
 Data structures, Modern operators and Strings
 
 */
-// - Destructuring Arrays- //
+// - Destructuring Objects- //
 const restaurant = {
-  name: 'Classico Italiano',
+  nameRestaurant: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order recived! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address}, at ${time}`
+    );
+  },
 };
 
-//destructuring is to break a complex data structure (example arrays) down into a smaller data structure like a variable.
+//destructuring is to break a complex data structure (example objects) down into a smaller data structure like a variable.
 
-const arr = [2, 3, 4];
+//to destrucure object we use curly braces
 
-//how we copy array into separate variable if we don't use destrucuring
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+//all we have to do is to provide the variable names that exactly match the property names that we want to retrieve from the object.
 
-//destructuring array
-const [x, y, z] = arr;
-console.log(x, y, z);
+//in an object, the order of elements does not matter, we don't need to manually skip elements like we did in an array.
 
-//destructuring array from object
-const [first, second] = restaurant.categories;
-console.log(first, second);
+const { openingHours, categories, nameRestaurant } = restaurant;
+console.log(openingHours, categories, nameRestaurant);
 
-//destructuring first and 3rd element of an array
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary);
+//if we wanted the variable names to be different from the property names we do this => const { objectPropretyName: newName} = objectname;
+const { openingHours: hours, categories: tags } = restaurant;
+console.log(hours, tags);
 
-// switch variables ussing destructuring. Work only with let and var
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// use default values for object destructuring
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
 
-//Recive 2 return values from a function and destructuring in 2 variables
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, ',', mainCourse);
+// mutating variables
 
-//destructuring nested array from
-const nested = [2, 3, [4, 5]];
-const [i, , [j, k]] = nested;
-console.log(`${i}, ${j}, ${k}`);
+let a = 111;
+let b = 999;
 
-//Default values
-const [p, q, r] = [8, 9];
-console.log(p, q, r);
+const obj = { a: 22, b: 7, c: 14 };
 
-//default values in variables for avoid undefined variable
-const [s = 1, t = 1, w = 1] = [8, 9];
-console.log(s, t, w);
+//for mutating variables we need parenthesis ()
+({ a, b } = obj);
+console.log(a, b);
+
+//nested objects
+//example with restaurant object 'openingHours'
+const { fri } = openingHours;
+console.log(fri);
+
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
+
+//calling method for destructuring object
+
+restaurant.orderDelivery({
+  time: '22:40',
+  address: 'Bd Bucuresti, 39',
+  mainIndex: 2,
+  starterIndex: 2,
+});
