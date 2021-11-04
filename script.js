@@ -4,7 +4,7 @@
 Data structures, Modern operators and Strings
 
 */
-// - The Spread Operator (...) - //
+// - Rest Pattern and Parameters - //
 const restaurant = {
   nameRestaurant: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -44,65 +44,56 @@ const restaurant = {
       `Here is your delicious past with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
-//basically, the spread operator expand an array into all of its individual elements.
-//example of add some values and copy other array into this new array
-const arr = [3, 4, 5];
-const newBadArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(newBadArr);
+//rest pattern uses the exact same syntax like spread operator(...), to collect multiple elements and condense them into an array.
+//so that's really the opposite of spread
 
-// same thing but easy way using spread operator
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+// 1. Destructuring
 
-//expand an array into all of its individual elements
-console.log(...newArr);
+// SPREAD => RIGHT side of = (equal)
+const arr = [1, 2, ...[3, 4]];
+console.log(arr);
 
-// here we create new array from object property
-const newMenu = [...restaurant.mainMenu, 'Halva'];
-console.log(newMenu);
-console.log(...newMenu);
+// REST => LEFT side of = (equal)
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a);
+console.log(b);
+console.log(others);
 
-// copy array
-const mainMenuCopy = [...restaurant.mainMenu];
-console.log(...mainMenuCopy);
-
-// join 2 arrays
-const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(...menu);
-
-//Iterables are arrays, strings, maps, and sets, BUT not objects.
-
-// how we use spread operator on String
-const str = 'Jonnas';
-console.log(...str);
-
-const strArr = [...str, ' ', 'D'];
-console.log(strArr);
-console.log(...strArr);
-
-//multiple values separated by a comma are usually only expected when we pass arguments into a function, or when we build a new array.
-
-/*
-const ingredients = [
-  prompt("Let's make paste! Ingredient 1?"),
-  prompt('Ingredient 2?'),
-  prompt('Ingredient 3?'),
+// rest and spread in the same example
+// rest must be the last
+const [pizza, , risotto, ...othersItems] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
 ];
-//long way
-restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+console.log(pizza, risotto, othersItems);
 
-//same thing but short way with spread operator
-restaurant.orderPasta(...ingredients);
-*/
+// Objects
+const { sat, ...weekDays } = restaurant.openingHours;
+console.log(weekDays);
 
-// Spread operator on object
-// since ES 2018, the spread operator actually also works on objects
-const newRestaurant = { ...restaurant, foundedIn: 1993, founder: 'Andrei' };
+// 2. Functions
 
-console.log(newRestaurant);
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  return console.log(sum);
+};
+add(4, 5);
+add(4, 5, 9);
+add(4, 5, 9, 22);
 
-// easy way to copy an object
-const restaurantCopy = { ...restaurant };
-console.log(restaurantCopy);
+// another example
+const x = [30, 2, 44];
+add(...x, 5, 10);
+
+// example with object method
+
+restaurant.orderPizza('salam', 'cascaval', ' sare', 'ciuperci');
