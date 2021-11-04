@@ -4,7 +4,7 @@
 Data structures, Modern operators and Strings
 
 */
-// - Destructuring Objects- //
+// - The Spread Operator (...) - //
 const restaurant = {
   nameRestaurant: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -39,53 +39,70 @@ const restaurant = {
       `Order recived! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address}, at ${time}`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious past with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 };
 
-//destructuring is to break a complex data structure (example objects) down into a smaller data structure like a variable.
+//basically, the spread operator expand an array into all of its individual elements.
+//example of add some values and copy other array into this new array
+const arr = [3, 4, 5];
+const newBadArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(newBadArr);
 
-//to destrucure object we use curly braces
+// same thing but easy way using spread operator
+const newArr = [1, 2, ...arr];
+console.log(newArr);
 
-//all we have to do is to provide the variable names that exactly match the property names that we want to retrieve from the object.
+//expand an array into all of its individual elements
+console.log(...newArr);
 
-//in an object, the order of elements does not matter, we don't need to manually skip elements like we did in an array.
+// here we create new array from object property
+const newMenu = [...restaurant.mainMenu, 'Halva'];
+console.log(newMenu);
+console.log(...newMenu);
 
-const { openingHours, categories, nameRestaurant } = restaurant;
-console.log(openingHours, categories, nameRestaurant);
+// copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(...mainMenuCopy);
 
-//if we wanted the variable names to be different from the property names we do this => const { objectPropretyName: newName} = objectname;
-const { openingHours: hours, categories: tags } = restaurant;
-console.log(hours, tags);
+// join 2 arrays
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(...menu);
 
-// use default values for object destructuring
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+//Iterables are arrays, strings, maps, and sets, BUT not objects.
 
-// mutating variables
+// how we use spread operator on String
+const str = 'Jonnas';
+console.log(...str);
 
-let a = 111;
-let b = 999;
+const strArr = [...str, ' ', 'D'];
+console.log(strArr);
+console.log(...strArr);
 
-const obj = { a: 22, b: 7, c: 14 };
+//multiple values separated by a comma are usually only expected when we pass arguments into a function, or when we build a new array.
 
-//for mutating variables we need parenthesis ()
-({ a, b } = obj);
-console.log(a, b);
+/*
+const ingredients = [
+  prompt("Let's make paste! Ingredient 1?"),
+  prompt('Ingredient 2?'),
+  prompt('Ingredient 3?'),
+];
+//long way
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
 
-//nested objects
-//example with restaurant object 'openingHours'
-const { fri } = openingHours;
-console.log(fri);
+//same thing but short way with spread operator
+restaurant.orderPasta(...ingredients);
+*/
 
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+// Spread operator on object
+// since ES 2018, the spread operator actually also works on objects
+const newRestaurant = { ...restaurant, foundedIn: 1993, founder: 'Andrei' };
 
-//calling method for destructuring object
+console.log(newRestaurant);
 
-restaurant.orderDelivery({
-  time: '22:40',
-  address: 'Bd Bucuresti, 39',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+// easy way to copy an object
+const restaurantCopy = { ...restaurant };
+console.log(restaurantCopy);
