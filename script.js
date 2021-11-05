@@ -4,7 +4,7 @@
 Data structures, Modern operators and Strings
 
 */
-// - Rest Pattern and Parameters - //
+// - Short Circuiting (&& and ||) - //
 const restaurant = {
   nameRestaurant: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -50,50 +50,63 @@ const restaurant = {
   },
 };
 
-//rest pattern uses the exact same syntax like spread operator(...), to collect multiple elements and condense them into an array.
-//so that's really the opposite of spread
+// we can use non Boolean values as the operands
 
-// 1. Destructuring
+// Use ANY data type, return ANY data type, short-circuiting
 
-// SPREAD => RIGHT side of = (equal)
-const arr = [1, 2, ...[3, 4]];
-console.log(arr);
+//In JavaScript, a truthy value is a value that is considered true when encountered in a Boolean context. All values are truthy unless they are defined as falsy (i.e., except for false , 0 , -0 , 0n , "" , null , undefined , and NaN )
 
-// REST => LEFT side of = (equal)
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a);
-console.log(b);
-console.log(others);
+console.log('------OR-----');
+// Short circuiting with OR (||) operator
+// if the first value is a truthy value, it will immediately return that first value, then the other operand will not even be evaluated.
 
-// rest and spread in the same example
-// rest must be the last
-const [pizza, , risotto, ...othersItems] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, othersItems);
+console.log(1 || 'Jonas'); //=> 1
+console.log(0 || 'Jonas'); //=> Jonas
+console.log('' || 'Jonas'); //=> Jonas
+console.log(null || 'Jonas'); //=> Jonas
+console.log(true || 'Jonas'); //=> true
 
-// Objects
-const { sat, ...weekDays } = restaurant.openingHours;
-console.log(weekDays);
+// in next example undefined is a falsy value, and so we then go to the second operand, so there is no short-circuiting, and so that's then the one that's gonna be returned.
+// here we see null in the console, and that happens even though null is also a falsy value.
 
-// 2. Functions
+console.log(undefined || null); //=> null
 
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  return console.log(sum);
-};
-add(4, 5);
-add(4, 5, 9);
-add(4, 5, 9, 22);
+console.log(undefined || 0 || '' || 'Hello' || 33 || null); //=>Hello
 
-// another example
-const x = [30, 2, 44];
-add(...x, 5, 10);
+// Example use short-circuiting ||
 
-// example with object method
+// long way
+const guest1 = restaurant.numGuest ? restaurant.numGuest : 10;
+console.log(guest1);
 
-restaurant.orderPizza('salam', 'cascaval', ' sare', 'ciuperci');
+// short way
+const guest2 = restaurant.numGuest || 10;
+console.log(guest2);
+
+// Short circuiting with AND (&&) operator
+
+console.log('------AND-----');
+
+//AND operator works in the exact opposite way of the OR operator.
+
+//AND operator short circuits, when the first value is falsy. And then immediately returns that falsy value without even evaluating the second operand.
+
+console.log(0 && 'Jonas'); //=> 0
+console.log('' && 'Jonas'); //=> empty
+console.log(null && 'Jonas'); //=> null
+
+// when both values are truthy, it means that the evaluation continues and then simply the last value is returned.
+console.log(1 && 'Jonas'); //=> Jonas
+console.log(true && 'Jonas'); //=> Jonas
+
+console.log('Hy' && 0 && '' && 'Hello' && 33 && null); //=>Hello
+
+// Example use short-circuiting ||
+
+// long way
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('aaa', 'bbb');
+}
+
+// short way
+restaurant.orderPizza && restaurant.orderPizza('nnn', 'ff', 'ggg');
