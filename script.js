@@ -110,3 +110,22 @@ if (restaurant.orderPizza) {
 
 // short way
 restaurant.orderPizza && restaurant.orderPizza('nnn', 'ff', 'ggg');
+
+// -The Nullish Coalescing Operator (??)-//
+
+//  it works almost the same way as the OR operator, but it will fix OR error.
+
+console.log('------Nullish-----');
+
+// Or error
+restaurant.numGuest = 0;
+const guestCorect = restaurant.numGuest || 10;
+console.log(guestCorect);
+
+//fix error with nullish
+const guesT = restaurant.numGuest ?? 10;
+console.log(guesT);
+
+// nullish coalescing operator works with the idea or with the concept of nullish values instead of falsy values.
+// nullish values are null and undefined.
+// for the nullish coalescing operator, it is as if the zero (0)and the empty string ("") were not falsy values and were instead truthy values as well.
