@@ -50,82 +50,45 @@ const restaurant = {
   },
 };
 
-// we can use non Boolean values as the operands
+// - logical assignment operators - //
 
-// Use ANY data type, return ANY data type, short-circuiting
+// OR assigment
 
-//In JavaScript, a truthy value is a value that is considered true when encountered in a Boolean context. All values are truthy unless they are defined as falsy (i.e., except for false , 0 , -0 , 0n , "" , null , undefined , and NaN )
+const rest1 = {
+  name: 'Dabo',
+  numGuest: 20,
+};
 
-console.log('------OR-----');
-// Short circuiting with OR (||) operator
-// if the first value is a truthy value, it will immediately return that first value, then the other operand will not even be evaluated.
-
-console.log(1 || 'Jonas'); //=> 1
-console.log(0 || 'Jonas'); //=> Jonas
-console.log('' || 'Jonas'); //=> Jonas
-console.log(null || 'Jonas'); //=> Jonas
-console.log(true || 'Jonas'); //=> true
-
-// in next example undefined is a falsy value, and so we then go to the second operand, so there is no short-circuiting, and so that's then the one that's gonna be returned.
-// here we see null in the console, and that happens even though null is also a falsy value.
-
-console.log(undefined || null); //=> null
-
-console.log(undefined || 0 || '' || 'Hello' || 33 || null); //=>Hello
-
-// Example use short-circuiting ||
+const rest2 = {
+  name: 'Boro',
+  owner: 'Mihai',
+};
 
 // long way
-const guest1 = restaurant.numGuest ? restaurant.numGuest : 10;
-console.log(guest1);
+/*rest1.numGuest = rest1.numGuest || 10;
+rest2.numGuest = rest2.numGuest || 10;
 
-// short way
-const guest2 = restaurant.numGuest || 10;
-console.log(guest2);
+console.log(rest1.numGuest);
+console.log(rest2.numGuest);
+*/
 
-// Short circuiting with AND (&&) operator
+// short way same result
 
-console.log('------AND-----');
+rest1.numGuest ||= 10;
+rest2.numGuest ||= 10;
 
-//AND operator works in the exact opposite way of the OR operator.
+console.log(rest1.numGuest);
+console.log(rest2.numGuest);
 
-//AND operator short circuits, when the first value is falsy. And then immediately returns that falsy value without even evaluating the second operand.
+// Nullish assignment
 
-console.log(0 && 'Jonas'); //=> 0
-console.log('' && 'Jonas'); //=> empty
-console.log(null && 'Jonas'); //=> null
+//rest1.numGuest ??= 10;
+//rest2.numGuest ??= 10;
 
-// when both values are truthy, it means that the evaluation continues and then simply the last value is returned.
-console.log(1 && 'Jonas'); //=> Jonas
-console.log(true && 'Jonas'); //=> Jonas
+// AND assigment
 
-console.log('Hy' && 0 && '' && 'Hello' && 33 && null); //=>Hello
+rest1.owner &&= 'Andrei';
+rest2.owner &&= 'Andrei';
 
-// Example use short-circuiting ||
-
-// long way
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('aaa', 'bbb');
-}
-
-// short way
-restaurant.orderPizza && restaurant.orderPizza('nnn', 'ff', 'ggg');
-
-// -The Nullish Coalescing Operator (??)-//
-
-//  it works almost the same way as the OR operator, but it will fix OR error.
-
-console.log('------Nullish-----');
-
-// Or error
-restaurant.numGuest = 0;
-const guestCorect = restaurant.numGuest || 10;
-console.log(guestCorect);
-
-//fix error with nullish
-const guesT = restaurant.numGuest ?? 10;
-console.log(guesT);
-
-// nullish coalescing operator works with the idea or with the concept of nullish values instead of falsy values.
-// nullish values are null and undefined.
-// for the nullish coalescing operator, it is as if the zero (0)and the empty string ("") were not falsy values and were instead truthy values as well.
+console.log(rest1);
+console.log(rest2);
